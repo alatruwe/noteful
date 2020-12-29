@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import dummyStore from "./dummy-store";
 import FolderList from "./composition/FolderList/FolderList.js";
+import NoteListMain from "./composition/NoteListMain/NoteListMain.js";
 import "./App.css";
 
 class App extends Component {
@@ -33,6 +34,29 @@ class App extends Component {
     );
   }
 
+  renderMainRoutes() {
+    const getNotesForFolder = (notes = [], folderId) =>
+      !folderId ? notes : notes.filter((note) => note.folderId === folderId);
+
+    const { notes, folders } = this.state;
+    return (
+      <>
+        {["/", "/folder/:folderId"].map((path) => (
+          <Route
+            exact
+            key={path}
+            path={path}
+            render={(routeProps) => {
+              const { folderId } = routeProps.match.params;
+              const notesForFolder = getNotesForFolder(notes, folderId);
+              return <NoteListMain {...routeProps} notes={notesForFolder} />;
+            }}
+          />
+        ))}
+      </>
+    );
+  }
+
   render() {
     return (
       <div className="App">
@@ -42,7 +66,7 @@ class App extends Component {
             <Link to="/">Noteful</Link>
           </h1>
         </header>
-        <main className="App__main"></main>
+        <main className="App__main">{this.renderMainRoutes()}</main>
       </div>
     );
   }
