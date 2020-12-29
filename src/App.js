@@ -3,6 +3,7 @@ import { Route, Link } from "react-router-dom";
 import dummyStore from "./dummy-store";
 import FolderList from "./composition/FolderList/FolderList.js";
 import NoteListMain from "./composition/NoteListMain/NoteListMain.js";
+import NoteDetails from "./composition/NoteDetails/NoteDetails.js";
 import "./App.css";
 
 class App extends Component {
@@ -37,6 +38,10 @@ class App extends Component {
   renderMainRoutes() {
     const getNotesForFolder = (notes = [], folderId) =>
       !folderId ? notes : notes.filter((note) => note.folderId === folderId);
+    const findFolder = (folders = [], folderId) =>
+      folders.find((folder) => folder.id === folderId);
+    const findNote = (notes = [], noteId) =>
+      notes.find((note) => note.id === noteId);
 
     const { notes, folders } = this.state;
     return (
@@ -53,6 +58,14 @@ class App extends Component {
             }}
           />
         ))}
+        <Route
+          path="/note/:noteId"
+          render={(routeProps) => {
+            const { noteId } = routeProps.match.params;
+            const note = findNote(notes, noteId);
+            return <NoteDetails {...routeProps} note={note} />;
+          }}
+        />
       </>
     );
   }
