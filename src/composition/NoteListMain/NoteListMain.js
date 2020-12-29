@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Note from "../Note/Note.js";
 import "./NoteListMain.css";
 
 export default function NoteListMain(props) {
@@ -7,7 +8,9 @@ export default function NoteListMain(props) {
     <section className="NoteListMain">
       <ul>
         {props.notes.map((note) => (
-          <li key={note.id}>{note.name}</li>
+          <li key={note.id}>
+            <Note id={note.id} name={note.name} modified={note.modified} />
+          </li>
         ))}
       </ul>
     </section>
