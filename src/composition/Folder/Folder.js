@@ -16,6 +16,8 @@ export default class Folder extends React.Component {
   render() {
     const { notes, folders } = this.context;
     const { noteId } = this.props.match.params;
+    const findNote = (notes = [], noteId) =>
+      notes.find((note) => note.id === noteId);
     const note = findNote(notes, noteId) || {};
     const findFolder = (folders = [], folderId) =>
       folders.find((folder) => folder.id === folderId);
