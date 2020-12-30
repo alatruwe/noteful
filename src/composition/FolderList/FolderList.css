@@ -1,9 +1,9 @@
-.NoteListNav__list {
+.FolderList__list {
   list-style-type: none;
   margin: 130px 0 0;
   padding: 0;
 }
-.NoteListNav__folder-link {
+.FolderList__folder-link {
   background-color: #030f1f;
   color: #b5b3b3;
   display: block;
@@ -14,10 +14,10 @@
   padding: 8px 16px;
   text-decoration: none;
 }
-.NoteListNav__folder-link:hover {
+.FolderList__folder-link:hover {
   color: #ffb72f;
   cursor: pointer;
 }
-.NoteListNav__folder-link.active {
+.FolderList__folder-link.active {
   background-color: #102541;
 }
