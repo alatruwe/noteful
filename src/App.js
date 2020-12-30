@@ -4,6 +4,7 @@ import dummyStore from "./dummy-store";
 import FolderList from "./composition/FolderList/FolderList.js";
 import NoteListMain from "./composition/NoteListMain/NoteListMain.js";
 import NoteDetails from "./composition/NoteDetails/NoteDetails.js";
+import Folder from "./composition/Folder/Folder.js";
 import "./App.css";
 
 class App extends Component {
@@ -19,6 +20,10 @@ class App extends Component {
 
   renderNavRoutes() {
     const { notes, folders } = this.state;
+    const findFolder = (folders = [], folderId) =>
+      folders.find((folder) => folder.id === folderId);
+    const findNote = (notes = [], noteId) =>
+      notes.find((note) => note.id === noteId);
     return (
       <>
         {["/", "/folder/:folderId"].map((path) => (
@@ -31,6 +36,15 @@ class App extends Component {
             )}
           />
         ))}
+        <Route
+          path="/note/:noteId"
+          render={(routeProps) => {
+            const { noteId } = routeProps.match.params;
+            const note = findNote(notes, noteId) || {};
+            const folder = findFolder(folders, note.folderId);
+            return <Folder {...routeProps} folder={folder} />;
+          }}
+        />
       </>
     );
   }
