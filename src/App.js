@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-import dummyStore from "./dummy-store";
 import FolderList from "./composition/FolderList/FolderList.js";
 import NoteListMain from "./composition/NoteListMain/NoteListMain.js";
 import NoteDetails from "./composition/NoteDetails/NoteDetails.js";
@@ -16,21 +15,21 @@ class App extends Component {
 
   componentDidMount() {
     const urlFolders = "http://localhost:9090/folders";
-    fetch(urlFolders)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          folders: data,
-        });
-      });
-
     const urlNotes = "http://localhost:9090/notes";
-    fetch(urlNotes)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          notes: data,
-        });
+
+    Promise.all([fetch(urlNotes), fetch(urlFolders)])
+      .then(([notesRes, foldersRes]) => {
+        if (!notesRes.ok) return notesRes.json().then((e) => Promise.reject(e));
+        if (!foldersRes.ok)
+          return foldersRes.json().then((e) => Promise.reject(e));
+
+        return Promise.all([notesRes.json(), foldersRes.json()]);
+      })
+      .then(([notes, folders]) => {
+        this.setState({ notes, folders });
+      })
+      .catch((error) => {
+        console.error({ error });
       });
   }
 
@@ -62,7 +61,7 @@ class App extends Component {
       folders: this.state.folders,
     };
     return (
-      <ApiContext.provider value={value}>
+      <ApiContext.Provider value={value}>
         <div className="App">
           <nav className="App__nav">{this.renderNavRoutes()}</nav>
           <header className="App__header">
@@ -72,7 +71,7 @@ class App extends Component {
           </header>
           <main className="App__main">{this.renderMainRoutes()}</main>
         </div>
-      </ApiContext.provider>
+      </ApiContext.Provider>
     );
   }
 }

@@ -1,12 +1,12 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ApiContext from "../../ApiContext.js";
 import "./FolderList.css";
 
 export default class FolderList extends React.Component {
   static contextType = ApiContext;
   render() {
-    const { folders = [], notes = [] } = this.context;
+    const { folders = [] } = this.context;
     return (
       <div className="FolderList">
         <ul className="FolderList__list">

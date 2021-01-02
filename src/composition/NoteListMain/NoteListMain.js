@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Note from "../Note/Note.js";
 import ApiContext from "../../ApiContext.js";
 import "./NoteListMain.css";

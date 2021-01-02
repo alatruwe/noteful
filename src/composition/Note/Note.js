@@ -7,7 +7,7 @@ export default class Note extends React.Component {
   static contextType = ApiContext;
 
   render() {
-    const { id, name, modified } = this.context;
+    const { id, name, modified } = this.props;
     return (
       <div className="Note">
         <h2 className="Note__title">
