@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import FolderList from "./composition/FolderList/FolderList.js";
-import NoteListMain from "./composition/NoteListMain/NoteListMain.js";
+import NoteListMain from "./composition/NoteList/NoteList.js";
 import NoteDetails from "./composition/NoteDetails/NoteDetails.js";
 import Folder from "./composition/Folder/Folder.js";
 import "./App.css";

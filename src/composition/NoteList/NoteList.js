@@ -1,7 +1,7 @@
 import React from "react";
 import Note from "../Note/Note.js";
 import ApiContext from "../../ApiContext.js";
-import "./NoteListMain.css";
+import "./NoteList.css";
 
 export default class NoteListMain extends React.Component {
   static defaultProps = {
