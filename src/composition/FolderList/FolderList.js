@@ -1,10 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import ApiContext from "../../ApiContext.js";
+import AddFolderButton from "../AddFolderButton/AddFolderButton.js";
 import "./FolderList.css";
 
 export default class FolderList extends React.Component {
   static contextType = ApiContext;
+
   render() {
     const { folders = [] } = this.context;
     return (
@@ -21,6 +23,7 @@ export default class FolderList extends React.Component {
             </li>
           ))}
         </ul>
+        <AddFolderButton />
       </div>
     );
   }
