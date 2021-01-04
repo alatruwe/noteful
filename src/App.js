@@ -37,6 +37,12 @@ class App extends Component {
     });
   };
 
+  handleAddFolder = (folderName) => {
+    this.setState({
+      folders: [...this.state.folders, folderName],
+    });
+  };
+
   renderNavRoutes() {
     return (
       <>
@@ -64,6 +70,7 @@ class App extends Component {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.handleDeleteNote,
+      addFolder: this.handleAddFolder,
     };
     return (
       <ApiContext.Provider value={value}>
