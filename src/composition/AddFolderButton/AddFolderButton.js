@@ -1,5 +1,6 @@
 import react, { Component } from "react";
 import AddFolderForm from "../AddFolderForm/AddFolderForm.js";
+import "./AddFolderButton.css";
 
 export default class AddFolderButton extends Component {
   constructor(props) {
