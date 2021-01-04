@@ -1,24 +1,29 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import ApiContext from "../../ApiContext.js";
 import "./FolderList.css";
 
-export default function FolderList(props) {
-  return (
-    <div className="NoteListNav">
-      <ul className="NoteListNav__list">
-        {props.folders.map((folder) => (
-          <li key={folder.id}>
-            <NavLink
-              className="NoteListNav__folder-link"
-              to={`/folder/${folder.id}`}
-            >
-              {folder.name}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+export default class FolderList extends React.Component {
+  static contextType = ApiContext;
+  render() {
+    const { folders = [] } = this.context;
+    return (
+      <div className="FolderList">
+        <ul className="FolderList__list">
+          {folders.map((folder) => (
+            <li key={folder.id}>
+              <NavLink
+                className="FolderList__folder-link"
+                to={`/folder/${folder.id}`}
+              >
+                {folder.name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 
 FolderList.defaultProps = {
