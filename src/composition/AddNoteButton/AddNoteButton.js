@@ -1,8 +1,8 @@
 import react, { Component } from "react";
-import AddFolderForm from "../AddFolderForm/AddFolderForm.js";
-import "./AddFolderButton.css";
+import AddNoteForm from "../AddNoteForm/AddNoteForm.js";
+import "./AddNoteButton.css";
 
-export default class AddFolderButton extends Component {
+export default class AddNoteButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,15 +17,15 @@ export default class AddFolderButton extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="add__note">
         <button
-          className="add__button"
+          className="add__note__button"
           type="submit"
           onClick={(e) => this.updateShowForm(e)}
         >
           Add
         </button>
-        {this.state.showForm && <AddFolderForm />}
+        {this.state.showForm && <AddNoteForm />}
       </div>
     );
   }

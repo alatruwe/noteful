@@ -4,7 +4,7 @@
   padding: 0;
 }
 .FolderList__folder-link,
-.add__folder {
+.add__button {
   background-color: #030f1f;
   color: #b5b3b3;
   display: block;

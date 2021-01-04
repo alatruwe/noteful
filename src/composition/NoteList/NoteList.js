@@ -1,6 +1,7 @@
 import React from "react";
 import Note from "../Note/Note.js";
 import ApiContext from "../../ApiContext.js";
+import AddNoteButton from "../AddNoteButton/AddNoteButton.js";
 import "./NoteList.css";
 
 export default class NoteListMain extends React.Component {
@@ -27,6 +28,7 @@ export default class NoteListMain extends React.Component {
             </li>
           ))}
         </ul>
+        <AddNoteButton />
       </section>
     );
   }
