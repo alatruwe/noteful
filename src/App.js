@@ -6,6 +6,7 @@ import NoteDetails from "./composition/NoteDetails/NoteDetails.js";
 import Folder from "./composition/Folder/Folder.js";
 import "./App.css";
 import ApiContext from "./ApiContext";
+import { ApiEndpointFolders, ApiEndpointNotes } from "./config.js";
 
 class App extends Component {
   state = {
@@ -14,10 +15,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const urlFolders = "http://localhost:9090/folders";
-    const urlNotes = "http://localhost:9090/notes";
-
-    Promise.all([fetch(urlNotes), fetch(urlFolders)])
+    Promise.all([fetch(ApiEndpointNotes), fetch(ApiEndpointFolders)])
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok) return notesRes.json().then((e) => Promise.reject(e));
         if (!foldersRes.ok)
@@ -32,6 +30,12 @@ class App extends Component {
         console.error({ error });
       });
   }
+
+  handleDeleteNote = (notesId) => {
+    this.setState({
+      notes: this.state.notes.filter((notes) => notes.id !== notesId),
+    });
+  };
 
   renderNavRoutes() {
     return (
@@ -59,6 +63,7 @@ class App extends Component {
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,
+      deleteNote: this.handleDeleteNote,
     };
     return (
       <ApiContext.Provider value={value}>
