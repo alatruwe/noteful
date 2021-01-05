@@ -1,3 +1,20 @@
+.add__button__div {
+  display: flex;
+  flex-direction: column;
+}
+
+.add__button {
+  background-color: #030f1f;
+  color: #b5b3b3;
+  display: block;
+  font-family: var(--custom-font);
+  font-size: 20px;
+  margin: auto;
+  max-width: 180px;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
 .add__button:hover {
   color: #ffb72f;
   cursor: pointer;

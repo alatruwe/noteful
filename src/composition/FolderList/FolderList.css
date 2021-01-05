@@ -3,8 +3,7 @@
   margin: 130px 0 0;
   padding: 0;
 }
-.FolderList__folder-link,
-.add__button {
+.FolderList__folder-link {
   background-color: #030f1f;
   color: #b5b3b3;
   display: block;

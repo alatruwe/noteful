@@ -11,7 +11,7 @@ export default class AddFolderForm extends Component {
   };
   static contextType = ApiContext;
 
-  //handle submit button to add folder
+  // POST request to add new folder
   handleSubmit = (event) => {
     event.preventDefault();
     const folderName = {

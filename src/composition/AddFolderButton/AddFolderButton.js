@@ -17,7 +17,7 @@ export default class AddFolderButton extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="add__button__div">
         <button
           className="add__button"
           type="submit"
