@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import FolderList from "./composition/FolderList/FolderList.js";
-import NoteListMain from "./composition/NoteList/NoteList.js";
+import NoteList from "./composition/NoteList/NoteList.js";
 import NoteDetails from "./composition/NoteDetails/NoteDetails.js";
 import Folder from "./composition/Folder/Folder.js";
 import "./App.css";
 import ApiContext from "./ApiContext";
 import { ApiEndpointFolders, ApiEndpointNotes } from "./config.js";
+import ListError from "./composition/ListError/ListError.js";
 
 class App extends Component {
   state = {
@@ -64,7 +65,7 @@ class App extends Component {
     return (
       <>
         {["/", "/folder/:folderId"].map((path) => (
-          <Route exact key={path} path={path} component={NoteListMain} />
+          <Route exact key={path} path={path} component={NoteList} />
         ))}
         <Route path="/note/:noteId" component={NoteDetails} />
       </>
@@ -82,13 +83,17 @@ class App extends Component {
     return (
       <ApiContext.Provider value={value}>
         <div className="App">
-          <nav className="App__nav">{this.renderNavRoutes()}</nav>
+          <ListError>
+            <nav className="App__nav">{this.renderNavRoutes()}</nav>
+          </ListError>
           <header className="App__header">
             <h1>
               <Link to="/">Noteful</Link>
             </h1>
           </header>
-          <main className="App__main">{this.renderMainRoutes()}</main>
+          <ListError>
+            <main className="App__main">{this.renderMainRoutes()}</main>
+          </ListError>
         </div>
       </ApiContext.Provider>
     );
