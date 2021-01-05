@@ -23,7 +23,7 @@ export default class AddFolderButton extends Component {
           type="submit"
           onClick={(e) => this.updateShowForm(e)}
         >
-          Add
+          Add Folder
         </button>
         {this.state.showForm && <AddFolderForm />}
       </div>

@@ -23,7 +23,7 @@ export default class AddNoteButton extends Component {
           type="submit"
           onClick={(e) => this.updateShowForm(e)}
         >
-          Add
+          Add Note
         </button>
         {this.state.showForm && <AddNoteForm />}
       </div>
