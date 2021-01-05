@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./AddFolderForm.css";
 import { ApiEndpointFolders } from "../../config.js";
 import ApiContext from "../../ApiContext.js";
+import PropTypes from "prop-types";
 
 export default class AddFolderForm extends Component {
   static defaultProps = {
@@ -59,3 +60,9 @@ export default class AddFolderForm extends Component {
     );
   }
 }
+
+AddFolderForm.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};

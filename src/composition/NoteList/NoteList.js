@@ -2,9 +2,10 @@ import React from "react";
 import Note from "../Note/Note.js";
 import ApiContext from "../../ApiContext.js";
 import AddNoteButton from "../AddNoteButton/AddNoteButton.js";
+import PropTypes from "prop-types";
 import "./NoteList.css";
 
-export default class NoteListMain extends React.Component {
+export default class NoteList extends React.Component {
   static defaultProps = {
     match: {
       params: {},
@@ -33,3 +34,19 @@ export default class NoteListMain extends React.Component {
     );
   }
 }
+
+NoteList.propTypes = {
+  match: PropTypes.arrayOf(
+    PropTypes.shape({
+      params: PropTypes.object,
+    })
+  ),
+  notes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      content: PropTypes.string,
+      modified: PropTypes.instanceOf(Date),
+    })
+  ),
+};

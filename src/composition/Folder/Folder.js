@@ -1,5 +1,6 @@
 import React from "react";
 import ApiContext from "../../ApiContext.js";
+import PropTypes from "prop-types";
 import "./Folder.css";
 
 export default class Folder extends React.Component {
@@ -29,3 +30,23 @@ export default class Folder extends React.Component {
     );
   }
 }
+
+Folder.propTypes = {
+  history: PropTypes.func,
+  match: PropTypes.arrayOf(
+    PropTypes.shape({
+      params: PropTypes.object,
+    })
+  ),
+  folders: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    })
+  ),
+  notes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+    })
+  ),
+};

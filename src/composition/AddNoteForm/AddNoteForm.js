@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import ApiContext from "../../ApiContext.js";
 import { ApiEndpointNotes } from "../../config.js";
 import ValidationError from "../ValidationError/ValidationError.js";
+import PropTypes from "prop-types";
 import "./AddNoteForm.css";
 
-export default class AddFolderForm extends Component {
+export default class AddNoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -102,3 +103,15 @@ export default class AddFolderForm extends Component {
     );
   }
 }
+
+AddNoteForm.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+  folders: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    })
+  ),
+};

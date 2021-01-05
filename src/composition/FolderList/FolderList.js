@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import ApiContext from "../../ApiContext.js";
 import AddFolderButton from "../AddFolderButton/AddFolderButton.js";
+import PropTypes from "prop-types";
 import "./FolderList.css";
 
 export default class FolderList extends React.Component {
@@ -31,4 +32,13 @@ export default class FolderList extends React.Component {
 
 FolderList.defaultProps = {
   folders: [],
+};
+
+FolderList.propTypes = {
+  folders: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    })
+  ),
 };

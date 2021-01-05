@@ -1,6 +1,7 @@
 import React from "react";
 import Note from "../Note/Note";
 import ApiContext from "../../ApiContext.js";
+import PropTypes from "prop-types";
 import "./NoteDetails.css";
 
 export default class NoteDetails extends React.Component {
@@ -29,3 +30,19 @@ export default class NoteDetails extends React.Component {
     );
   }
 }
+
+NoteDetails.propTypes = {
+  match: PropTypes.arrayOf(
+    PropTypes.shape({
+      params: PropTypes.object,
+    })
+  ),
+  notes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      content: PropTypes.string,
+      modified: PropTypes.instanceOf(Date),
+    })
+  ),
+};
