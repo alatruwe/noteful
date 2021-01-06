@@ -72,6 +72,7 @@ export default class AddNoteForm extends Component {
       })
       .then((newNote) => {
         this.context.addNote(newNote);
+        this.props.handler();
       })
       .catch((error) => {
         console.log(error);
@@ -132,8 +133,8 @@ AddNoteForm.propTypes = {
   }),
   folders: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      id: PropTypes.string,
+      name: PropTypes.string,
     })
-  ).isRequired,
+  ),
 };

@@ -8,6 +8,13 @@ export default class AddNoteButton extends Component {
     this.state = {
       showForm: false,
     };
+    this.handler = this.handler.bind(this);
+  }
+
+  handler() {
+    this.setState({
+      showForm: false,
+    });
   }
 
   updateShowForm() {
@@ -25,7 +32,7 @@ export default class AddNoteButton extends Component {
         >
           Add Note
         </button>
-        {this.state.showForm && <AddNoteForm />}
+        {this.state.showForm && <AddNoteForm handler={this.handler} />}
       </div>
     );
   }
