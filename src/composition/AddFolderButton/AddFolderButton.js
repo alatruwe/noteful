@@ -1,4 +1,4 @@
-import react, { Component } from "react";
+import { Component } from "react";
 import AddFolderForm from "../AddFolderForm/AddFolderForm.js";
 import "./AddFolderButton.css";
 

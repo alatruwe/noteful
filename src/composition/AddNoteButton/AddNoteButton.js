@@ -1,4 +1,4 @@
-import react, { Component } from "react";
+import { Component } from "react";
 import AddNoteForm from "../AddNoteForm/AddNoteForm.js";
 import "./AddNoteButton.css";
 
