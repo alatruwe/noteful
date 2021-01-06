@@ -129,11 +129,11 @@ export default class AddNoteForm extends Component {
 AddNoteForm.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
-  }).isRequired,
+  }),
   folders: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     })
-  ),
+  ).isRequired,
 };
