@@ -1,13 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import ApiContext from "../../ApiContext.js";
 import "./Note.css";
 import { ApiEndpointNotes } from "../../config.js";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 
-export default class Note extends React.Component {
+class Note extends React.Component {
   static defaultProps = {
+    history: {
+      push: () => {},
+    },
     onDeleteNote: () => {},
   };
   static contextType = ApiContext;
@@ -33,6 +36,8 @@ export default class Note extends React.Component {
       })
       .then(() => {
         this.context.deleteNote(notesId);
+        this.props.onDeleteNote(notesId);
+        this.props.history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -55,16 +60,14 @@ export default class Note extends React.Component {
         </button>
         <div className="Note__dates">
           <div className="Note__dates-modified">
-            Modified:{" "}
-            <span className="Date">
-              {format(Date.parse(modified), "MMMM dd, yyyy")}
-            </span>
+            Modified: <span className="Date">{modified}</span>
           </div>
         </div>
       </div>
     );
   }
 }
+export default withRouter(Note);
 
 Note.propTypes = {
   onDeleteNote: PropTypes.func,
