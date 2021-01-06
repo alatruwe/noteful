@@ -8,6 +8,13 @@ export default class AddFolderButton extends Component {
     this.state = {
       showForm: false,
     };
+    this.handler = this.handler.bind(this);
+  }
+
+  handler() {
+    this.setState({
+      showForm: false,
+    });
   }
 
   updateShowForm() {
@@ -15,6 +22,7 @@ export default class AddFolderButton extends Component {
       showForm: true,
     });
   }
+
   render() {
     return (
       <div className="add__button__div">
@@ -25,7 +33,7 @@ export default class AddFolderButton extends Component {
         >
           Add Folder
         </button>
-        {this.state.showForm && <AddFolderForm />}
+        {this.state.showForm && <AddFolderForm handler={this.handler} />}
       </div>
     );
   }

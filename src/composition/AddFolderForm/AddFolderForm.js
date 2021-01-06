@@ -13,11 +13,6 @@ export default class AddFolderForm extends Component {
       touched: false,
     };
   }
-  static defaultProps = {
-    history: {
-      push: () => {},
-    },
-  };
   static contextType = ApiContext;
 
   // folder name validation
@@ -56,6 +51,7 @@ export default class AddFolderForm extends Component {
       })
       .then((folderName) => {
         this.context.addFolder(folderName);
+        this.props.handler();
       })
       .catch((error) => {
         console.log(error);
@@ -89,9 +85,3 @@ export default class AddFolderForm extends Component {
     );
   }
 }
-
-AddFolderForm.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
-};
