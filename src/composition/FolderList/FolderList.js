@@ -37,7 +37,7 @@ FolderList.defaultProps = {
 FolderList.propTypes = {
   folders: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       name: PropTypes.string,
     })
   ),

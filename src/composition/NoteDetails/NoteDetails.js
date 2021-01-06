@@ -34,15 +34,15 @@ export default class NoteDetails extends React.Component {
 NoteDetails.propTypes = {
   match: PropTypes.arrayOf(
     PropTypes.shape({
-      params: PropTypes.object,
+      params: PropTypes.array,
     })
   ),
   notes: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       name: PropTypes.string,
       content: PropTypes.string,
-      modified: PropTypes.instanceOf(Date),
+      modified: PropTypes.string,
     })
   ),
 };

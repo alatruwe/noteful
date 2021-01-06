@@ -35,18 +35,18 @@ Folder.propTypes = {
   history: PropTypes.func,
   match: PropTypes.arrayOf(
     PropTypes.shape({
-      params: PropTypes.object,
+      params: PropTypes.array,
     })
   ),
   folders: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       name: PropTypes.string,
     })
   ),
   notes: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
     })
   ),
 };
