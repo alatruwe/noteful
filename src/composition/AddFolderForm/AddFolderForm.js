@@ -3,14 +3,34 @@ import "./AddFolderForm.css";
 import { ApiEndpointFolders } from "../../config.js";
 import ApiContext from "../../ApiContext.js";
 import PropTypes from "prop-types";
+import ValidationError from "../ValidationError/ValidationError.js";
 
 export default class AddFolderForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "",
+      touched: false,
+    };
+  }
   static defaultProps = {
     history: {
       push: () => {},
     },
   };
   static contextType = ApiContext;
+
+  // folder name validation
+  updateFolderName(name) {
+    this.setState({ value: name, touched: true });
+  }
+
+  validateFolderName() {
+    const name = this.state.value;
+    if (name.length === 0) {
+      return "Please enter a folder name";
+    }
+  }
 
   // POST request to add new folder
   handleSubmit = (event) => {
@@ -43,6 +63,7 @@ export default class AddFolderForm extends Component {
   };
 
   render() {
+    const folderNameError = this.validateFolderName();
     return (
       <form
         className="add__folder__form"
@@ -50,11 +71,19 @@ export default class AddFolderForm extends Component {
       >
         <div>
           <label htmlFor="add__folder">New folder:</label>
-          <input type="text" name="folderName" id="folderName" />
+          <input
+            type="text"
+            name="folderName"
+            id="folderName"
+            onChange={(e) => this.updateFolderName(e.target.value)}
+          />
+          {this.state.touched && <ValidationError message={folderNameError} />}
         </div>
 
         <div>
-          <button type="submit">Save</button>
+          <button type="submit" disabled={this.validateFolderName()}>
+            Save
+          </button>
         </div>
       </form>
     );
