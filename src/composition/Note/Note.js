@@ -4,6 +4,7 @@ import ApiContext from "../../ApiContext.js";
 import "./Note.css";
 import { ApiEndpointNotes } from "../../config.js";
 import PropTypes from "prop-types";
+import { format } from "date-fns";
 
 export default class Note extends React.Component {
   static defaultProps = {
@@ -54,7 +55,10 @@ export default class Note extends React.Component {
         </button>
         <div className="Note__dates">
           <div className="Note__dates-modified">
-            Modified <span className="Date">{modified}</span>
+            Modified:{" "}
+            <span className="Date">
+              {format(Date.parse(modified), "MMMM dd, yyyy")}
+            </span>
           </div>
         </div>
       </div>
