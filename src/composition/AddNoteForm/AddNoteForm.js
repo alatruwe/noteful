@@ -9,7 +9,8 @@ export default class AddNoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
+      name: "",
+      content: "",
       touched: false,
     };
   }
@@ -22,14 +23,25 @@ export default class AddNoteForm extends Component {
 
   // form name validation
   updateNoteName(name) {
-    this.setState({ value: name, touched: true });
+    this.setState({ name: name, touched: true });
   }
 
   validateNoteName() {
-    const name = this.state.value;
-    console.log(name);
+    const name = this.state.name;
     if (name.length === 0) {
       return "Please enter a name";
+    }
+  }
+
+  // form content validation
+  updateNoteContent(content) {
+    this.setState({ content: content, touched: true });
+  }
+
+  validateNoteContent() {
+    const content = this.state.content;
+    if (content.length === 0) {
+      return "The note can't be empty";
     }
   }
 
@@ -69,6 +81,7 @@ export default class AddNoteForm extends Component {
   render() {
     const { folders = [] } = this.context;
     const nameError = this.validateNoteName();
+    const contentError = this.validateNoteContent();
     return (
       <form className="add__note__form" onSubmit={(e) => this.handleSubmit(e)}>
         <div className="add__note__form__input">
@@ -83,7 +96,11 @@ export default class AddNoteForm extends Component {
         </div>
         <div>
           <label htmlFor="add__note">Content:</label>
-          <textarea name="noteContent" />
+          <textarea
+            name="noteContent"
+            onChange={(e) => this.updateNoteContent(e.target.value)}
+          />
+          {this.state.touched && <ValidationError message={contentError} />}
         </div>
         <div>
           <label htmlFor="add__note">Folder:</label>
@@ -97,7 +114,12 @@ export default class AddNoteForm extends Component {
         </div>
 
         <div>
-          <button type="submit">Save</button>
+          <button
+            type="submit"
+            disabled={(this.validateNoteName(), this.validateNoteContent())}
+          >
+            Save
+          </button>
         </div>
       </form>
     );
