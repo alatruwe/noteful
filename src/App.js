@@ -32,9 +32,10 @@ class App extends Component {
       });
   }
 
-  handleDeleteNote = (notesId) => {
+  handleDeleteNote = (noteId) => {
+    const newNotes = this.state.notes.filter((note) => note.id !== noteId);
     this.setState({
-      notes: this.state.notes.filter((notes) => notes.id !== notesId),
+      notes: newNotes,
     });
   };
 

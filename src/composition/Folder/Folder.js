@@ -32,21 +32,6 @@ export default class Folder extends React.Component {
 }
 
 Folder.propTypes = {
-  history: PropTypes.func,
-  match: PropTypes.arrayOf(
-    PropTypes.shape({
-      params: PropTypes.array,
-    })
-  ),
-  folders: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-    })
-  ),
-  notes: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-    })
-  ),
+  history: PropTypes.object,
+  match: PropTypes.object,
 };

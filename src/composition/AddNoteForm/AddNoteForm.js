@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import ApiContext from "../../ApiContext.js";
 import { ApiEndpointNotes } from "../../config.js";
 import ValidationError from "../ValidationError/ValidationError.js";
 import PropTypes from "prop-types";
 import "./AddNoteForm.css";
 
-export default class AddNoteForm extends Component {
+class AddNoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +19,8 @@ export default class AddNoteForm extends Component {
     history: {
       push: () => {},
     },
+    name: "",
+    content: "",
   };
   static contextType = ApiContext;
 
@@ -73,6 +76,7 @@ export default class AddNoteForm extends Component {
       .then((newNote) => {
         this.context.addNote(newNote);
         this.props.handler();
+        this.props.history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -128,13 +132,10 @@ export default class AddNoteForm extends Component {
 }
 
 AddNoteForm.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }),
-  folders: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-    })
-  ),
+  history: PropTypes.object,
+  name: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  handler: PropTypes.func,
 };
+
+export default withRouter(AddNoteForm);

@@ -12,6 +12,8 @@ class Note extends React.Component {
       push: () => {},
     },
     onDeleteNote: () => {},
+    name: "",
+    id: "",
   };
   static contextType = ApiContext;
 
@@ -70,4 +72,13 @@ class Note extends React.Component {
     );
   }
 }
+
+Note.propTypes = {
+  history: PropTypes.object,
+  onDeleteNote: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  modified: PropTypes.string,
+};
+
 export default withRouter(Note);

@@ -13,6 +13,9 @@ export default class AddFolderForm extends Component {
       touched: false,
     };
   }
+  static defaultProps = {
+    name: "",
+  };
   static contextType = ApiContext;
 
   // folder name validation
@@ -85,3 +88,8 @@ export default class AddFolderForm extends Component {
     );
   }
 }
+
+AddFolderForm.propTypes = {
+  handler: PropTypes.func,
+  name: PropTypes.string.isRequired,
+};
