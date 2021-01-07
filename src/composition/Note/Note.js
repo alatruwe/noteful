@@ -4,7 +4,7 @@ import ApiContext from "../../ApiContext.js";
 import "./Note.css";
 import { ApiEndpointNotes } from "../../config.js";
 import PropTypes from "prop-types";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 class Note extends React.Component {
   static defaultProps = {
@@ -35,9 +35,9 @@ class Note extends React.Component {
         return res.json();
       })
       .then(() => {
+        this.props.history.push("/");
         this.context.deleteNote(notesId);
         this.props.onDeleteNote(notesId);
-        this.props.history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -60,7 +60,10 @@ class Note extends React.Component {
         </button>
         <div className="Note__dates">
           <div className="Note__dates-modified">
-            Modified: <span className="Date">{modified}</span>
+            Modified:{" "}
+            <span className="Date">
+              {format(parseISO(modified), "MMMM dd, yyyy")}
+            </span>
           </div>
         </div>
       </div>
@@ -68,10 +71,3 @@ class Note extends React.Component {
   }
 }
 export default withRouter(Note);
-
-Note.propTypes = {
-  onDeleteNote: PropTypes.func,
-  id: PropTypes.string,
-  name: PropTypes.string,
-  modified: PropTypes.string,
-};
